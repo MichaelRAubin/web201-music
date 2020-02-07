@@ -3,9 +3,16 @@ import SongService from "../Services/SongsService.js";
 
 //Private
 /**Draws the Search results to the page */
-function _drawResults() {}
-/**Draws the Users saved songs to the page */
-function _drawPlaylist() {}
+function _drawResults() {
+  /**Draws the Users saved songs to the page */
+  let template = "";
+  store.state.songs.forEach(song => {
+    template += song.Template;
+  });
+  document.getElementById("songs").innerHTML = template;
+}
+
+function _drawPlaylist() { }
 
 //Public
 export default class SongsController {
@@ -29,11 +36,11 @@ export default class SongsController {
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
-  async addSong(id) {}
+  async addSong(id) { }
 
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server
    * @param {string} id
    */
-  async removeSong(id) {}
+  async removeSong(id) { }
 }

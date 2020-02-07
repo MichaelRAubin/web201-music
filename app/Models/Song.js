@@ -11,8 +11,14 @@ export default class Song {
   }
 
   get Template() {
-    return `
-
+    return /* html */ `
+    <div>
+    <img src="${this.albumArt}">
+    <p>${this.title}</p>
+    <audio controls>
+    <source src="${this.preview}">
+    </audio>
+    </div>
         `;
   }
 

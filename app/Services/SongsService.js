@@ -20,6 +20,7 @@ class SongsService {
     let url = "https://itunes.apple.com/search?&term=" + query;
     let response = await fetch(url);
     let data = await response.json();
+    store.state.songs = data.results.map(songsData => new Song(songsData));
     console.log("THE SONG DATA", data.results);
   }
 
