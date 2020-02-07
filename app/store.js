@@ -5,7 +5,8 @@ class Store {
    * Provides access to application state data
    */
   state = {
-    songs: []
+    songs: [],
+    activeSong: new Song(),
   };
 }
 

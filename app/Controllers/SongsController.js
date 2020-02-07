@@ -11,6 +11,15 @@ function _drawResults() {
   });
   document.getElementById("songs").innerHTML = template;
 }
+function drawPlayingSong() {
+  if (!store.state.activeSong.title) {
+    document.getElementById("activeSong").innerHTML = "";
+    return;
+  }
+  document.getElementById("activeSong").innerHTML =
+    store.state.activeSong.playSongTemplate;
+}
+
 
 function _drawPlaylist() { }
 
@@ -27,6 +36,18 @@ export default class SongsController {
     try {
       await SongService.getMusicByQuery(e.target.query.value);
       _drawResults();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  /**
+   * 
+   * @param {string} id
+   */
+  async playSong(id) {
+    try {
+      await SongService.nowPlayingSong(id);
+      drawPlayingSong();
     } catch (error) {
       console.error(error);
     }

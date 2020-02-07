@@ -1,5 +1,8 @@
 export default class Song {
   constructor(data) {
+    if (!data) {
+      return
+    }
     this.title = data.trackName || data.title;
     this.albumArt =
       data.albumArt || data.artworkUrl100.replace(/100x100/g, "300x300");
@@ -12,14 +15,28 @@ export default class Song {
 
   get Template() {
     return /* html */ `
-    <div>
+  <div onclick="app.songsController.playSong('${this._id}')">
     <img src="${this.albumArt}">
     <p>${this.title}</p>
-    <audio controls>
-    <source src="${this.preview}">
-    </audio>
     </div>
         `;
+  }
+
+  get playSongTemplate() {
+    return /* html */ `
+    <div class="card shadow">
+      <img src="${this.albumArt}" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">${this.title}</h5>
+          <p class="card-text">
+            <audio controls>
+    <source src="${this.preview}">
+    </audio>
+          </p>
+
+        </div>
+    </div>
+    `;
   }
 
   get playlistTemplate() {

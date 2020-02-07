@@ -24,6 +24,11 @@ class SongsService {
     console.log("THE SONG DATA", data.results);
   }
 
+  async nowPlayingSong(_id) {
+    let selectSong = store.state.songs.find(s => s._id == _id)
+    store.state.activeSong = selectSong;
+
+  }
   /**
    * Retrieves the saved list of songs from the sandbox
    */
