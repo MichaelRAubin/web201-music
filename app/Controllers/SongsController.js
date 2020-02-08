@@ -11,22 +11,28 @@ function _drawResults() {
   });
   document.getElementById("songs").innerHTML = template;
 }
-function drawPlayingSong() {
+function drawActiveSong() {
   if (!store.state.activeSong.title) {
     document.getElementById("activeSong").innerHTML = "";
     return;
   }
   document.getElementById("activeSong").innerHTML =
-    store.state.activeSong.playSongTemplate;
+    store.state.activeSong.activeSongTemplate;
 }
 
 
-function _drawPlaylist() { }
+function _drawPlaylist() {
+  let template = "";
+  store.state.mySongs.forEach(songs => {
+    template += songs.playlistTemplate;
+  });
+  document.getElementById("playlist").innerHTML = template;
+}
 
 //Public
 export default class SongsController {
   constructor() {
-    // TODO load your playlist
+    this.getMySongs();
   }
 
   /**Takes in the form submission event and sends the query to the service */
@@ -44,10 +50,10 @@ export default class SongsController {
    * 
    * @param {string} id
    */
-  async playSong(id) {
+  async activeSong(id) {
     try {
-      await SongService.nowPlayingSong(id);
-      drawPlayingSong();
+      await SongService.activeSong(id);
+      drawActiveSong();
     } catch (error) {
       console.error(error);
     }
@@ -57,11 +63,28 @@ export default class SongsController {
    * Takes in a song id and sends it to the service in order to add it to the users playlist
    * @param {string} id
    */
-  async addSong(id) { }
+  async addSong(id) {
+    try {
+      await SongService.addSong(id);
+      _drawPlaylist();
+      drawActiveSong();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   /**
    * Takes in a song id to be removed from the users playlist and sends it to the server
    * @param {string} id
    */
   async removeSong(id) { }
+
+  async getMySongs() {
+    try {
+      await SongService.getMySongs()
+      _drawPlaylist();
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

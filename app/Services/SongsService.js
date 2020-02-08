@@ -3,7 +3,7 @@ import store from "../store.js";
 
 // @ts-ignore
 //TODO Change YOURNAME to your actual name
-let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/YOURNAME/songs";
+let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/mray/songs";
 
 class SongsService {
   constructor() {
@@ -24,7 +24,7 @@ class SongsService {
     console.log("THE SONG DATA", data.results);
   }
 
-  async nowPlayingSong(_id) {
+  async activeSong(_id) {
     let selectSong = store.state.songs.find(s => s._id == _id)
     store.state.activeSong = selectSong;
 
@@ -35,6 +35,7 @@ class SongsService {
   async getMySongs() {
     let response = await fetch(_sandBoxUrl);
     let data = await response.json();
+    store.state.mySongs = data.data.map(songData => new Song(songData));
     console.log("MY SONGS", data.data);
   }
 
@@ -43,9 +44,30 @@ class SongsService {
    * Afterwords it will update the store to reflect saved info
    * @param {string} id
    */
-  addSong(id) {
+  async addSong(id) {
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
+    let activeSong = store.state.activeSong;
+    let found = store.state.mySongs.find(s => s._id == id);
+
+    if (found) {
+      throw new Error(
+        "Song is already in your playlist!"
+      );
+    }
+
+    let response = await fetch(_sandBoxUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(activeSong)
+    });
+    let data = await response.json();
+
+    let mySong = new Song(data.data);
+    store.state.mySongs.push(mySong);
+    store.state.activeSong = mySong;
   }
 
   /**

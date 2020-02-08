@@ -15,14 +15,14 @@ export default class Song {
 
   get Template() {
     return /* html */ `
-  <div onclick="app.songsController.playSong('${this._id}')">
+  <div onclick="app.songsController.activeSong('${this._id}')">
     <img src="${this.albumArt}">
     <p>${this.title}</p>
     </div>
         `;
   }
 
-  get playSongTemplate() {
+  get activeSongTemplate() {
     return /* html */ `
     <div class="card shadow">
       <img src="${this.albumArt}" class="card-img-top">
@@ -31,17 +31,25 @@ export default class Song {
           <p class="card-text">
             <audio controls>
     <source src="${this.preview}">
-    </audio>
-          </p>
-
+    </audio></p>
+      <button class="btn btn-info" onclick="app.songsController.addSong('${this._id}')">
+      Add to playlist</button>
         </div>
     </div>
     `;
   }
 
   get playlistTemplate() {
-    return `
-
-        `;
+    return /* html */ `
+      <div class="border p-2 mb-1">
+        <div class="d-flex align-items-center justify-content-between">
+        <div>
+          <img src="${this.albumArt}" height="65">
+          <span class="ml-2">${this.title}</span>
+        </div>
+        <span class="text-danger">&times;</span>
+        </div>
+      </div>
+    `;
   }
 }

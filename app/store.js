@@ -7,6 +7,7 @@ class Store {
   state = {
     songs: [],
     activeSong: new Song(),
+    mySongs: []
   };
 }
 
