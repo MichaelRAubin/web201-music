@@ -16,8 +16,8 @@ export default class Song {
   get Template() {
     return /* html */ `
   <div onclick="app.songsController.activeSong('${this._id}')">
-    <img src="${this.albumArt}">
-    <p>${this.title}</p>
+    <img src="${this.albumArt}" height="65" class="mb-2">
+    <span class="m1-2">${this.title}</span>
     </div>
         `;
   }
@@ -47,7 +47,7 @@ export default class Song {
           <img src="${this.albumArt}" height="65">
           <span class="ml-2">${this.title}</span>
         </div>
-        <span class="text-danger">&times;</span>
+        <span class="text-danger" onclick="app.songsController.removeSong('${this._id}')">&times;</span>
         </div>
       </div>
     `;

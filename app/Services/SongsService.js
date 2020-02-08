@@ -3,7 +3,7 @@ import store from "../store.js";
 
 // @ts-ignore
 //TODO Change YOURNAME to your actual name
-let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/mray/songs";
+let _sandBoxUrl = "//bcw-sandbox.herokuapp.com/api/mray/songs/";
 
 class SongsService {
   constructor() {
@@ -42,18 +42,19 @@ class SongsService {
   /**
    * Takes in a song id and sends it from the search results to the sandbox to be saved.
    * Afterwords it will update the store to reflect saved info
-   * @param {string} id
+   * @param {string} title
    */
-  async addSong(id) {
+  async addSong(title) {
     //TODO you only have an id, you will need to find it in the store before you can post it
     //TODO After posting it what should you do?
     let activeSong = store.state.activeSong;
-    let found = store.state.mySongs.find(s => s._id == id);
+    let found = store.state.mySongs.find(s => s.title == activeSong.title);
 
     if (found) {
       throw new Error(
         "Song is already in your playlist!"
       );
+      return
     }
 
     let response = await fetch(_sandBoxUrl, {
@@ -73,10 +74,18 @@ class SongsService {
   /**
    * Sends a delete request to the sandbox to remove a song from the playlist
    * Afterwords it will update the store to reflect saved info
-   * @param {string} id
+   * @param {string} _id
    */
-  removeSong(id) {
+  async removeSong(_id) {
     //TODO Send the id to be deleted from the server then update the store
+    await fetch(_sandBoxUrl + _id, {
+      method: "DELETE"
+    });
+    let i = store.state.mySongs.findIndex(s => s._id == _id);
+    if (i != -1) {
+      store.state.mySongs.splice(i, 1);
+    }
+    store.state.activeSong = new Song();
   }
 }
 
