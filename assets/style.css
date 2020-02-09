@@ -10,3 +10,8 @@
 .bg-black {
     background-color: black;
 }
+
+.heading-text {
+    font-family: Tahoma;
+    font-size: larger;
+}

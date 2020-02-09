@@ -19,7 +19,7 @@ export default class Song {
         <div class="d-flex align-items-center justify-content-between">
           <div onclick="app.songsController.activeSong('${this._id}')">
           <img src="${this.albumArt}" height="65">
-          <span class="ml-2">${this.title}</span>
+          <span class="ml-2">${this.artist} - ${this.title}</span>
           </div>
         </div>
     </div>
@@ -31,8 +31,9 @@ export default class Song {
     <div class="card shadow w-50 mx-auto mt-2 img-pointer">
       <img src="${this.albumArt}" class="card-img-top">
       <div class="card-body">
-        <h5 class="card-title">${this.title}</h5>
-          <p class="card-text">
+        <h5 class="card-title"><span>${this.artist} - </span>${this.title}</h5>
+        <p>Track Price: $${this.price}</p>  
+        <p class="card-text">
             <audio controls = "controls">
     <source src="${this.preview}">
     </audio></p>

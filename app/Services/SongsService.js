@@ -51,9 +51,12 @@ class SongsService {
     let found = store.state.mySongs.find(s => s.title == activeSong.title);
 
     if (found) {
-      throw new Error(
-        "Song is already in your playlist!"
-      );
+      // @ts-ignore
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Song is already on your playlist!',
+      })
       return
     }
 
