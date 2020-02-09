@@ -41,6 +41,8 @@ export default class SongsController {
     try {
       await SongService.getMusicByQuery(e.target.query.value);
       _drawResults();
+      // @ts-ignore
+      form.reset();
     } catch (error) {
       console.error(error);
     }
@@ -68,7 +70,7 @@ export default class SongsController {
       _drawPlaylist();
       _drawActiveSong();
     } catch (error) {
-      console.error(error);
+      alert(error);
     }
   }
 
@@ -94,4 +96,5 @@ export default class SongsController {
       console.error(error);
     }
   }
+
 }

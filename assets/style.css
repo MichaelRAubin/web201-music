@@ -1,0 +1,12 @@
+.img-pointer {
+    cursor: pointer;
+}
+
+.img-sizing {
+    height: 50px;
+    width: 50px;
+}
+
+.bg-black {
+    background-color: black;
+}

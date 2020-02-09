@@ -85,7 +85,6 @@ class SongsService {
     if (i != -1) {
       store.state.mySongs.splice(i, 1);
     }
-    store.state.activeSong = new Song();
   }
 }
 
