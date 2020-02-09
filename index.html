@@ -11,52 +11,43 @@
 </head>
 
 <body class="container-fluid">
-  <header class="row">
-
-    <nav class="col-12 navbar navbar-light bg-black text-light">
-      <a class="display-1 navbar-brand">
-        <h1><img class="img-sizing img-fluid mr-2" src="assets/musical-notes (2).png" alt=""></span>TUNEify</h1>
-      </a>
-      <form class="form-inline" onsubmit="app.songsController.search(event)">
-        <input type="text" class="form-control mr-sm-2" name="query" type="search" placeholder="Search For Music" />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </nav>
-
+  <header>
+    <div class="row">
+      <nav class="col-12 navbar navbar-light bg-black text-light m-auto">
+        <a class="display-1 navbar-brand">
+          <h1><img class="img-sizing img-fluid mr-2" src="assets/musical-notes (2).png" alt=""></span>TUNEify</h1>
+        </a>
+        <form class="form-inline" onsubmit="app.songsController.search(event)">
+          <input type="text" class="form-control mr-sm-2" name="query" type="search" placeholder="Search For Music" />
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </nav>
+    </div>
   </header>
-
-  <main class="row">
-    <div class="col-3 bg-secondary">
-      <h3 class="mt-3 heading-text text-left">Search Results</h3>
-      <div id="songs" class="col-12 m-0">
-        <!-- template to generate -->
-      </div>
-    </div>
-    <div class="col-6 mx-auto" style="width: 200px" ;>
-      <h3 class="mt-3 heading-text text-left">Now Playing</h3>
-      <div id="activeSong" class="col-12 mx-auto">
-        <img class="w-50 mt-5 d-flex mx-auto" src="assets/iTunes10.png" alt="">
-        <!-- template  for active song -->
-      </div>
-    </div>
-    <div class="col-3 bg-primary">
-      <h3 class="mt-3 heading-text text-left">My Music</h3>
-      <div class="col-12 m-0" id="playlist">
-        <!-- template for playlist -->
-      </div>
-    </div>
-  </main>
-  <footer class="row">
-    <section class="container-fluid">
-      <div class="row bg-warning">
-        <div class="col-12 mt-2 text-center text-light">
-          <img class="img-fluid icon-sizing" src="assets/reboot-icon-22.jpg" alt="Image result for reboot icon">
-          <span>
-            <h6>Powered by REBOOT Software!!</h6>
-          </span>
+  <main>
+    <div class="row h-75">
+      <div class="col 12 order-3 order-lg-1 col-lg-3 bg-secondary">
+        <h3 class="mt-3 heading-text text-left">Search Results</h3>
+        <div id="songs" class="col-12 m-0">
+          <!-- template to generate -->
         </div>
-    </section>
-  </footer>
+      </div>
+      <div class="col-12 order-2 order-lg-2 col-lg-6 w-50" style="width: 200px" ;>
+        <h3 class="mt-3 heading-text text-left">Now Playing</h3>
+        <div id="activeSong" class="col-12 mx-auto">
+          <img class="mt-5 w-50 d-flex mx-auto" src="assets/iTunes10.png" alt="">
+          <!-- template  for active song -->
+        </div>
+      </div>
+      <div class="col-12 order-1 order-lg-3 col-lg-3 bg-primary">
+        <h3 class="mt-3 heading-text text-left">My Music</h3>
+        <div class="col-12 m-0" id="playlist">
+          <!-- template for playlist -->
+        </div>
+      </div>
+  </main>
+  <footer></footer>
+
 
   <script src="https://kit.fontawesome.com/9c2d120d7c.js" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"

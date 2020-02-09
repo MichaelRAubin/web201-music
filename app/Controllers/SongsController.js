@@ -42,7 +42,7 @@ export default class SongsController {
       await SongService.getMusicByQuery(e.target.query.value);
       _drawResults();
       // @ts-ignore
-      form.reset();
+      //form.reset();
     } catch (error) {
       console.error(error);
     }
