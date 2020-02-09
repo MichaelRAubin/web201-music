@@ -28,12 +28,12 @@ export default class Song {
 
   get activeSongTemplate() {
     return /* html */ `
-    <div class="card shadow mt-2 mb-2 img-fluid img-pointer">
+    <div class="card shadow mt-2 w-100 m-auto img-fluid img-pointer">
       <img src="${this.albumArt}" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title"><span>${this.artist} - </span>${this.title}</h5>
         <p>Track Price: $${this.price}</p>  
-        <p class="card-text">
+        <p class="card-text ml-n3">
             <audio controls = "controls">
     <source src="${this.preview}">
     </audio></p>
