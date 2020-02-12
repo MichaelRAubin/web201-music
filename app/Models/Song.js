@@ -15,20 +15,25 @@ export default class Song {
 
   get Template() {
     return /* html */ `
-    <div class="border p-2 mb-2 bg-light img-fluid img-pointer">
-        <div class="d-flex align-items-center justify-content-between">
-          <div onclick="app.songsController.activeSong('${this._id}')">
-          <img src="${this.albumArt}" height="65">
-          <span class="ml-2">${this.artist} - ${this.title}</span>
-          </div>
-        </div>
+    <div class="card shadow mb-3 img-fluid img-pointer" style="max-width: 540px;">
+      <div class="row no-gutters">
+      <div class="col-md-4">
+      <img src="${this.albumArt}" class="card-img" alt="..." onclick="app.songsController.activeSong('${this._id}')">
     </div>
-   `;
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">${this.artist}</h5>
+        <p class="card-text">${this.title}</p>
+        </div>
+      </div>
+    </div>
+</div>
+  `;
   }
 
   get activeSongTemplate() {
     return /* html */ `
-    <div class="card shadow mt-2 w-100 m-auto img-fluid img-pointer">
+    <div class="card shadow mt-2 m-auto img-fluid img-pointer">
       <img src="${this.albumArt}" class="card-img-top">
       <div class="card-body">
         <h5 class="card-title"><span>${this.artist} - </span>${this.title}</h5>
