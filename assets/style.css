@@ -29,6 +29,11 @@ html, body {
 
 .overflow {
     width: 200px;
-    height: 1000px;
+    height: 760px;
     overflow: auto;
+}
+
+span.icon:before {
+    font-family: FontAwesome;
+    content: "\f015";
 }
