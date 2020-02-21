@@ -17,7 +17,7 @@ class SongsService {
    */
   async getMusicByQuery(query) {
     // NOTE You will not need to change this method
-    let url = "https://itunes.apple.com/search?&term=" + query;
+    let url = "https://itunes.apple.com/search?&media=music&term=" + query;
     let response = await fetch(url);
     let data = await response.json();
     store.state.songs = data.results.map(songsData => new Song(songsData));
